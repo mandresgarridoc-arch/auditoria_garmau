@@ -8,7 +8,7 @@ import {
 // --- COMPONENTES DE SECCIÓN ---
 
 const Resumen = () => (
-  <div className="animate-fade-in space-y-6">
+  <div className="animate-fade-in space-y-6 pb-8">
     <div className="flex items-center gap-3 mb-6">
       <FileText className="text-blue-600 dark:text-blue-400" size={32} />
       <h2 className="text-3xl font-bold">Resumen de la Empresa Auditada</h2>
@@ -35,7 +35,7 @@ const Resumen = () => (
 );
 
 const InyeccionSQL = () => (
-  <div className="animate-fade-in space-y-6">
+  <div className="animate-fade-in space-y-6 pb-8">
     <div className="flex items-center gap-3 mb-6">
       <Database className="text-red-500" size={32} />
       <h2 className="text-3xl font-bold">Inyección SQL (SQLi)</h2>
@@ -93,7 +93,7 @@ const InyeccionSQL = () => (
 );
 
 const XSS = () => (
-  <div className="animate-fade-in space-y-6">
+  <div className="animate-fade-in space-y-6 pb-8">
     <div className="flex items-center gap-3 mb-6">
       <Code className="text-orange-500" size={32} />
       <h2 className="text-3xl font-bold">Cross-Site Scripting (XSS Reflejado)</h2>
@@ -147,7 +147,7 @@ const XSS = () => (
 );
 
 const Comandos = () => (
-  <div className="animate-fade-in space-y-6">
+  <div className="animate-fade-in space-y-6 pb-8">
     <div className="flex items-center gap-3 mb-6">
       <Terminal className="text-purple-500" size={32} />
       <h2 className="text-3xl font-bold">Inyección de Comandos</h2>
@@ -201,7 +201,7 @@ const Comandos = () => (
 );
 
 const Activos = () => (
-  <div className="animate-fade-in space-y-6">
+  <div className="animate-fade-in space-y-6 pb-8">
     <div className="flex items-center gap-3 mb-6">
       <Server className="text-emerald-500" size={32} />
       <h2 className="text-3xl font-bold">Activos de Información y Riesgos</h2>
@@ -239,7 +239,7 @@ const Activos = () => (
 );
 
 const Matriz = () => (
-  <div className="animate-fade-in space-y-6">
+  <div className="animate-fade-in space-y-6 pb-8">
     <div className="flex items-center gap-3 mb-6">
       <Activity className="text-rose-500" size={32} />
       <h2 className="text-3xl font-bold">Matriz de Riesgos y Mapa de Calor</h2>
@@ -300,7 +300,7 @@ const Matriz = () => (
 );
 
 const Controles = () => (
-  <div className="animate-fade-in space-y-6">
+  <div className="animate-fade-in space-y-6 pb-8">
     <div className="flex items-center gap-3 mb-6">
       <Shield className="text-indigo-500" size={32} />
       <h2 className="text-3xl font-bold">Controles de Prevención y Mitigación</h2>
@@ -353,7 +353,7 @@ const Controles = () => (
 );
 
 const Recuperacion = () => (
-  <div className="animate-fade-in space-y-6">
+  <div className="animate-fade-in space-y-6 pb-8">
     <div className="flex items-center gap-3 mb-6">
       <Activity className="text-sky-500" size={32} />
       <h2 className="text-3xl font-bold">Mejora y Recuperación (DRP)</h2>
@@ -406,7 +406,7 @@ const Recuperacion = () => (
 );
 
 const Prompts = () => (
-  <div className="animate-fade-in space-y-6">
+  <div className="animate-fade-in space-y-6 pb-8">
     <div className="flex items-center gap-3 mb-6">
       <Terminal className="text-green-500" size={32} />
       <h2 className="text-3xl font-bold">Bitácora de Uso de IA</h2>
@@ -535,15 +535,46 @@ export default function App() {
           ))}
         </nav>
 
-        {/* Toggle Theme Bottom */}
-        <div className="p-4 border-t border-slate-200 dark:border-slate-800">
+        {/* Zona inferior del menú: Info y Modo Oscuro */}
+        <div className="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 flex flex-col gap-4">
+          
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-sm font-medium"
           >
-            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+            {darkMode ? <Sun size={16} /> : <Moon size={16} />}
             {darkMode ? 'Modo Claro' : 'Modo Oscuro'}
           </button>
+
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col items-center gap-3">
+            <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">
+              Desarrollado por<br/>[Tu Apellido Nombre]
+            </span>
+            
+            <div className="flex gap-2 w-full justify-center">
+              <a href="https://github.com/tu-usuario" target="_blank" rel="noreferrer" title="Ver repositorio en GitHub" className="p-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                  <path d="M9 18c-4.51 2-5-2-7-2"/>
+                </svg>
+              </a>
+              <button title="Descargar Informe PDF" className="p-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                <Download size={18} />
+              </button>
+            </div>
+
+            <div className="flex items-center justify-center gap-2 mt-1 p-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg w-full">
+              <img 
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://github.com&color=${darkMode ? 'ffffff' : '0f172a'}&bgcolor=${darkMode ? '0f172a' : 'ffffff'}`} 
+                alt="QR Code" 
+                className="w-8 h-8 rounded-sm"
+              />
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium leading-tight">
+                Escanear <br/> en móvil
+              </span>
+            </div>
+          </div>
+
         </div>
       </aside>
 
@@ -555,36 +586,6 @@ export default function App() {
           <div className="max-w-4xl mx-auto">
             {renderContent()}
           </div>
-
-          {/* Footer incorporado al final del scroll */}
-          <footer className="max-w-4xl mx-auto mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6 text-slate-600 dark:text-slate-400 pb-8">
-            <div className="flex flex-col items-center md:items-start">
-              <span className="text-sm font-semibold mb-2">Desarrollado por [Tu Apellido Nombre]</span>
-              <a href="https://github.com/tu-usuario" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-                  <path d="M9 18c-4.51 2-5-2-7-2"/>
-                </svg>
-                <span className="text-sm font-medium">Ver repositorio en GitHub</span>
-              </a>
-              <button className="flex items-center gap-2 mt-4 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                <Download size={20} />
-                <span className="text-sm font-medium">Descargar Informe PDF</span>
-              </button>
-            </div>
-            
-            <div className="flex flex-col items-center bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
-              {/* QR Falso autogenerado usando una API gratuita que apunta a tu github, puedes cambiar la url en el param 'data=' */}
-              <img 
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://github.com&color=${darkMode ? 'ffffff' : '0f172a'}&bgcolor=${darkMode ? '0f172a' : 'ffffff'}`} 
-                alt="QR Code" 
-                className="w-24 h-24 mb-2 rounded"
-              />
-              <span className="text-xs font-medium flex items-center gap-1">
-                <QrCode size={14} /> Escanear en móvil
-              </span>
-            </div>
-          </footer>
         </div>
       </main>
 
