@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Shield, Database, Code, Terminal, 
   Server, AlertTriangle, Lock, Activity, Moon, Sun, 
-  QrCode, Download, Menu, X, FileText, CheckCircle, Zap
+  QrCode, Download, Menu, X, FileText, CheckCircle, Zap, Cpu, Wrench, PenTool
 } from 'lucide-react';
 
 // --- COMPONENTES DE SECCIÓN ---
@@ -593,24 +593,54 @@ const Prompts = () => (
     <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 space-y-8 hover:shadow-lg transition-shadow print:shadow-none print:border-slate-300">
       
       <div className="border-l-4 border-emerald-500 pl-6 py-1">
-        <h3 className="text-lg font-extrabold mb-4 text-slate-800 dark:text-slate-200 print:text-black">Componente React InyeccionSQL.jsx</h3>
+        <h3 className="text-lg font-extrabold mb-4 text-slate-800 dark:text-slate-200 print:text-black flex items-center gap-2">
+          <Wrench className="text-emerald-500" size={20}/> Fase 1: Arquitectura y Entorno
+        </h3>
         <div className="bg-slate-50 dark:bg-slate-950 p-5 rounded-xl border border-slate-100 dark:border-slate-800 mb-4 font-mono text-sm text-slate-600 dark:text-slate-400 print:bg-white print:border-slate-300 print:text-slate-800">
-          <span className="font-bold text-emerald-600 dark:text-emerald-500">Prompt:</span> "Crea un componente React con JSX llamado InyeccionSQL que documente el hallazgo de SQLi. Debe mostrar el título 'Inyección SQL', la captura desde /img/sqli_garmau.png, el payload ' OR '1'='1 en un bloque de código, y usar Tailwind CSS y un ícono de Lucide (Database)."
+          <span className="font-bold text-emerald-600 dark:text-emerald-500">Prompt:</span> "Consulta para la resolución del error de compilación `useState is not defined` y posterior falla en la renderización de los estilos de Tailwind CSS v4."
         </div>
         <p className="text-sm text-slate-700 dark:text-slate-300 flex gap-2 print:text-slate-800">
-          <CheckCircle size={18} className="text-emerald-500 shrink-0" />
-          <span><strong>Ajustes:</strong> La IA generó el código base (GitHub Copilot), pero se ajustó la ruta de la imagen en la etiqueta img porque inicialmente no apuntaba correctamente a la carpeta public/img/.</span>
+          <CheckCircle size={18} className="text-emerald-500 shrink-0 mt-0.5" />
+          <span><strong>Resultado:</strong> La IA identificó la ausencia de importaciones de React y la falta de inicialización de Tailwind. Se ajustó `vite.config.js` y `index.css`, corrigiendo una directiva obsoleta (`@custom-variant`) para habilitar el Modo Oscuro nativo.</span>
         </p>
       </div>
 
       <div className="border-l-4 border-emerald-500 pl-6 py-1">
-        <h3 className="text-lg font-extrabold mb-4 text-slate-800 dark:text-slate-200 print:text-black">Explicación Técnica XSS</h3>
+        <h3 className="text-lg font-extrabold mb-4 text-slate-800 dark:text-slate-200 print:text-black flex items-center gap-2">
+          <PenTool className="text-emerald-500" size={20}/> Fase 2: Diseño UI/UX y Formato
+        </h3>
         <div className="bg-slate-50 dark:bg-slate-950 p-5 rounded-xl border border-slate-100 dark:border-slate-800 mb-4 font-mono text-sm text-slate-600 dark:text-slate-400 print:bg-white print:border-slate-300 print:text-slate-800">
-          <span className="font-bold text-emerald-600 dark:text-emerald-500">Prompt:</span> "Explica brevemente y de forma técnica por qué funciona el ataque Cross-Site Scripting reflejado en DVWA nivel low."
+          <span className="font-bold text-emerald-600 dark:text-emerald-500">Prompt:</span> "Para ir terminando con el formato, quiero que le agregues colores distintivos a las cajas, bordes y sombras para que se vea interactiva, quiero que la página sea diferente y profesional."
         </div>
         <p className="text-sm text-slate-700 dark:text-slate-300 flex gap-2 print:text-slate-800">
-          <CheckCircle size={18} className="text-emerald-500 shrink-0" />
-          <span><strong>Ajustes:</strong> La respuesta (Gemini) fue resumida y adaptada específicamente al contexto del negocio de AFP Horizonte para encajar en el reporte profesional.</span>
+          <CheckCircle size={18} className="text-emerald-500 shrink-0 mt-0.5" />
+          <span><strong>Resultado:</strong> Migración a un diseño *Premium*. Se generó un sistema de Tarjetas con gradientes, efectos *hover* y una paleta semántica basada en la severidad de las vulnerabilidades. Se reorganizó el panel lateral integrando el QR.</span>
+        </p>
+      </div>
+
+      <div className="border-l-4 border-emerald-500 pl-6 py-1">
+        <h3 className="text-lg font-extrabold mb-4 text-slate-800 dark:text-slate-200 print:text-black flex items-center gap-2">
+          <Cpu className="text-emerald-500" size={20}/> Fase 3: Responsive y Exportación
+        </h3>
+        <div className="bg-slate-50 dark:bg-slate-950 p-5 rounded-xl border border-slate-100 dark:border-slate-800 mb-4 font-mono text-sm text-slate-600 dark:text-slate-400 print:bg-white print:border-slate-300 print:text-slate-800">
+          <span className="font-bold text-emerald-600 dark:text-emerald-500">Prompt:</span> "La descarga del PDF solo muestra una página, necesito el informe completo. Además, la matriz de riesgo se ve como una tabla con desplazamiento lateral en el celular."
+        </div>
+        <p className="text-sm text-slate-700 dark:text-slate-300 flex gap-2 print:text-slate-800">
+          <CheckCircle size={18} className="text-emerald-500 shrink-0 mt-0.5" />
+          <span><strong>Resultado:</strong> Implementación de `window.print()` nativo con clases ocultas para estructurar el PDF. Se reprogramó la matriz de riesgos bajo un enfoque *Mobile-First*, mutando de Tabla (escritorio) a Tarjetas (móvil) para erradicar el scroll horizontal.</span>
+        </p>
+      </div>
+
+      <div className="border-l-4 border-emerald-500 pl-6 py-1">
+        <h3 className="text-lg font-extrabold mb-4 text-slate-800 dark:text-slate-200 print:text-black flex items-center gap-2">
+          <Shield className="text-emerald-500" size={20}/> Fase 4: Visuales y Dependencias
+        </h3>
+        <div className="bg-slate-50 dark:bg-slate-950 p-5 rounded-xl border border-slate-100 dark:border-slate-800 mb-4 font-mono text-sm text-slate-600 dark:text-slate-400 print:bg-white print:border-slate-300 print:text-slate-800">
+          <span className="font-bold text-emerald-600 dark:text-emerald-500">Prompt:</span> "Quiero utilizar una imagen propia como logo de mi página y pestaña... La página se ve blanca ahora, no se ve nada."
+        </div>
+        <p className="text-sm text-slate-700 dark:text-slate-300 flex gap-2 print:text-slate-800">
+          <CheckCircle size={18} className="text-emerald-500 shrink-0 mt-0.5" />
+          <span><strong>Resultado:</strong> Configuración del *favicon* en `index.html`. La IA analizó el fallo de "pantalla blanca" diagnosticando la invocación de un ícono de `lucide-react` inexistente en la versión local, procediendo a purgar la dependencia para estabilizar la app.</span>
         </p>
       </div>
 
@@ -619,7 +649,7 @@ const Prompts = () => (
           <Terminal size={20} /> Reflexión del uso de IA
         </h4>
         <p className="text-sm text-emerald-900/80 dark:text-emerald-300/80 leading-relaxed print:text-slate-800">
-          La IA resultó sumamente útil para acelerar la creación de la estructura de componentes en React y aplicar estilos con Tailwind, evitando escribir el código repetitivo desde cero (boilerplate). Sin embargo, demostró fallos menores en contextos específicos de rutas locales y tendió a alargar explicaciones teóricas. Esto demuestra la importancia de dirigir la herramienta con precisión (Prompt Engineering) y la obligatoriedad de revisar y adaptar siempre el código resultante antes de integrarlo a producción.
+          La IA demostró ser un recurso de alto valor para el desarrollo ágil de interfaces (*Front-end*), logrando materializar un maquetado complejo en tiempos reducidos y proponiendo soluciones elegantes (ej. diseño híbrido de la matriz). No obstante, el proceso desnudó sus limitaciones: propensión a sugerir sintaxis obsoletas y a generar caídas de compilación al invocar dependencias no validadas. Esto reafirma que la IA funge como un excelente copiloto, pero exige del desarrollador un conocimiento sólido de la arquitectura, revisión crítica y un *Prompt Engineering* asertivo.
         </p>
       </div>
 
