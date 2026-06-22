@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Shield, BookOpen, Database, Code, Terminal, 
+  Shield, Database, Code, Terminal, 
   Server, AlertTriangle, Lock, Activity, Moon, Sun, 
   QrCode, Download, Menu, X, FileText, CheckCircle, Zap
 } from 'lucide-react';
@@ -213,7 +213,7 @@ const Comandos = () => (
         <div className="bg-slate-50 dark:bg-slate-800/50 p-5 rounded-xl border border-slate-100 dark:border-slate-700/50 print:bg-white print:border-slate-300">
           <h4 className="text-lg font-bold mb-3 print:text-black">Explicación Técnica</h4>
           <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed print:text-slate-800">
-            La aplicación web toma una dirección IP e invoca directamente un comando del sistema subyacente (como ping) sin filtrar caracteres especiales. Usando el punto y coma (;), el atacante termina el comando original e inicia uno nuevo con los privilegios del servidor web.
+            La aplicación web toma una dirección IP e invoca directamente un comando del sistema subyacente (como ping) sin filtrar caracteres especiales. Usando el punto y coma (;), el atacante termina el comando original e inicia uno nuevo con los privileges del servidor web.
           </p>
         </div>
         <div className="bg-purple-50 dark:bg-purple-900/10 p-5 rounded-xl border border-purple-100 dark:border-purple-900/30 print:bg-white print:border-slate-300">
@@ -611,37 +611,50 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen font-sans transition-colors duration-500 flex flex-col md:flex-row ${darkMode ? 'bg-[#0b1120] text-slate-100' : 'bg-slate-50 text-slate-900'} print:bg-white print:text-black`}>
+    <div className={`h-[100dvh] font-sans transition-colors duration-500 flex flex-col md:flex-row ${darkMode ? 'bg-[#0b1120] text-slate-100' : 'bg-slate-50 text-slate-900'} print:bg-white print:text-black print:h-auto`}>
       
       {/* Botón menú móvil (se oculta al imprimir) */}
-      <div className="md:hidden p-4 flex justify-between items-center bg-white dark:bg-slate-900 shadow-md border-b dark:border-slate-800 z-30 sticky top-0 print:hidden">
+      <div className="md:hidden p-4 flex justify-between items-center bg-white dark:bg-slate-900 shadow-md border-b dark:border-slate-800 z-30 shrink-0 print:hidden">
         <div className="flex items-center gap-2 font-bold text-lg tracking-tight">
           <div className="p-1.5 bg-blue-600 rounded-lg text-white">
             <Shield size={20} />
           </div>
           Auditoría AFP
         </div>
-        <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-          {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
+        <button onClick={() => setSidebarOpen(true)} className="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+          <Menu size={24} />
         </button>
       </div>
+
+      {/* Overlay oscuro para móvil al abrir el menú */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-900/60 dark:bg-black/60 z-40 md:hidden backdrop-blur-sm transition-opacity"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
       {/* Sidebar de Navegación (se oculta al imprimir) */}
       <aside className={`
         print:hidden
-        fixed inset-y-0 left-0 z-20 w-72 transform transition-transform duration-300 ease-in-out
+        fixed inset-y-0 left-0 z-50 w-72 transform transition-transform duration-300 ease-in-out
         md:relative md:translate-x-0
-        bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shadow-xl md:shadow-none flex flex-col
+        bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shadow-2xl md:shadow-none flex flex-col shrink-0
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
-        <div className="p-6 hidden md:flex items-center gap-4 border-b border-slate-100 dark:border-slate-800">
-          <div className="p-2.5 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl text-white shadow-lg shadow-blue-500/20">
-            <Shield size={28} />
+        <div className="p-6 flex items-center justify-between md:justify-start gap-4 border-b border-slate-100 dark:border-slate-800 shrink-0">
+          <div className="flex items-center gap-4">
+            <div className="p-2.5 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl text-white shadow-lg shadow-blue-500/20">
+              <Shield size={28} />
+            </div>
+            <div>
+              <h1 className="font-extrabold text-xl tracking-tight leading-tight">Auditoría Sec</h1>
+              <p className="text-xs text-blue-600 dark:text-blue-400 font-bold uppercase tracking-widest mt-0.5">AFP Horizonte</p>
+            </div>
           </div>
-          <div>
-            <h1 className="font-extrabold text-xl tracking-tight leading-tight">Auditoría Sec</h1>
-            <p className="text-xs text-blue-600 dark:text-blue-400 font-bold uppercase tracking-widest mt-0.5">AFP Horizonte</p>
-          </div>
+          <button onClick={() => setSidebarOpen(false)} className="md:hidden p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 bg-slate-50 dark:bg-slate-800 rounded-lg transition-colors">
+            <X size={20} />
+          </button>
         </div>
 
         <nav className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto custom-scrollbar">
@@ -670,68 +683,66 @@ export default function App() {
           })}
         </nav>
 
-        {/* Zona inferior del menú: Info y Modo Oscuro */}
-        <div className="p-5 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex flex-col gap-5">
+        {/* Zona inferior del menú: Info y Modo Oscuro (REDISEÑADA Y COMPACTA) */}
+        <div className="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex flex-col gap-4 shrink-0">
           
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300 shadow-sm hover:shadow text-sm font-bold"
-          >
-            {darkMode ? <Sun size={18} className="text-amber-500" /> : <Moon size={18} className="text-indigo-500" />}
-            {darkMode ? 'Modo Claro' : 'Modo Oscuro'}
-          </button>
+          {/* Fila de Botones: Tema, GitHub, PDF */}
+          <div className="flex gap-2 w-full">
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              title={darkMode ? 'Cambiar a Modo Claro' : 'Cambiar a Modo Oscuro'}
+              className="flex-1 flex justify-center items-center p-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow text-slate-700 dark:text-slate-300 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300"
+            >
+              {darkMode ? <Sun size={18} className="text-amber-500" /> : <Moon size={18} className="text-indigo-500" />}
+            </button>
 
-          <div className="pt-5 border-t border-slate-200 dark:border-slate-800/80 flex flex-col items-center gap-4">
-            <div className="text-center">
-              <span className="text-[10px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest block mb-1">
-                Auditor
-              </span>
-              <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                Mauricio Garrido
-              </span>
-            </div>
+            <a href="https://github.com/tu-usuario" target="_blank" rel="noreferrer" title="Ver repositorio en GitHub" className="flex-1 flex justify-center items-center p-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow text-slate-700 dark:text-slate-300 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                <path d="M9 18c-4.51 2-5-2-7-2"/>
+              </svg>
+            </a>
             
-            <div className="flex gap-2 w-full justify-center">
-              <a href="https://github.com/mandresgarridoc-arch" target="_blank" rel="noreferrer" title="Perfil Github Mauricio Garrido" className="p-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow text-slate-700 dark:text-slate-300 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-                  <path d="M9 18c-4.51 2-5-2-7-2"/>
-                </svg>
-              </a>
-              {/* Botón modificado para activar impresión a PDF */}
-              <button 
-                onClick={() => window.print()} 
-                title="Guardar sección como PDF" 
-                className="p-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow text-slate-700 dark:text-slate-300 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center"
-              >
-                <Download size={20} />
-              </button>
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-3 mt-1 p-4 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 shadow-inner rounded-xl w-full group">
-              <div className="p-2 bg-white dark:bg-slate-100 rounded-lg shadow-sm border border-slate-200 group-hover:scale-105 transition-transform duration-300">
-                <img 
-                  src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://auditoria-garmau.vercel.app&color=0f172a&bgcolor=ffffff`} 
-                  alt="QR Code" 
-                  className="w-20 h-20"
-                />
-              </div>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider text-center flex items-center gap-1">
-                <QrCode size={12} /> Escanear App
-              </span>
-            </div>
+            <button 
+              onClick={() => window.print()} 
+              title="Descargar Informe PDF" 
+              className="flex-1 flex justify-center items-center p-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow text-slate-700 dark:text-slate-300 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300"
+            >
+              <Download size={18} />
+            </button>
           </div>
 
+          {/* Tarjeta de Info y QR Compacta */}
+          <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 shadow-inner rounded-xl w-full">
+            <div className="flex flex-col overflow-hidden pr-2">
+              <span className="text-[10px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-widest block mb-0.5">
+                Auditor
+              </span>
+              <span className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">
+                [Tu Apellido Nombre]
+              </span>
+              <span className="text-[10px] text-slate-500 flex items-center gap-1 mt-1">
+                <QrCode size={10} /> Escanea la App
+              </span>
+            </div>
+            <div className="shrink-0 p-1.5 bg-white dark:bg-slate-100 rounded-lg shadow-sm border border-slate-200 hover:scale-105 transition-transform duration-300">
+              <img 
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://auditoria-garmau.vercel.app&color=0f172a&bgcolor=ffffff`} 
+                alt="QR Code" 
+                className="w-12 h-12 md:w-14 md:h-14"
+              />
+            </div>
+          </div>
         </div>
       </aside>
 
-      {/* Área Principal */}
-      <main className="flex-1 flex flex-col h-screen overflow-hidden relative print:h-auto print:overflow-visible print:block">
+      {/* Área Principal (Ajustada para permitir scroll sin romper flexbox) */}
+      <main className="flex-1 flex flex-col min-h-0 overflow-hidden relative print:overflow-visible print:block">
         {/* Fondo sutil tipo malla (mesh) en modo claro (se oculta al imprimir) */}
         <div className="absolute inset-0 z-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-none [background-size:20px_20px] opacity-40 print:hidden"></div>
         
-        {/* Contenedor del contenido escroleable */}
-        <div className="flex-1 overflow-y-auto p-6 md:p-12 scroll-smooth relative z-10 print:overflow-visible print:p-0 print:m-0">
+        {/* Contenedor del contenido escroleable interno */}
+        <div className="flex-1 overflow-y-auto p-6 md:p-12 scroll-smooth relative z-10 print:overflow-visible print:p-0 print:m-0 custom-scrollbar">
           <div className="max-w-4xl mx-auto">
             
             {/* VISTA DE PANTALLA: Muestra solo la sección activa (Se oculta en el PDF) */}
@@ -748,7 +759,7 @@ export default function App() {
                   <h1 className="text-5xl font-black text-slate-900 mb-4 tracking-tight">Informe de Auditoría de Seguridad</h1>
                   <h2 className="text-3xl font-bold text-slate-600">AFP Horizonte</h2>
                   <p className="mt-12 text-lg text-slate-500 font-bold uppercase tracking-widest">Auditor Asignado</p>
-                  <p className="text-2xl font-semibold text-slate-800">Mauricio Garrido</p>
+                  <p className="text-2xl font-semibold text-slate-800">[Tu Apellido Nombre]</p>
                 </div>
                 <Resumen />
               </div>
