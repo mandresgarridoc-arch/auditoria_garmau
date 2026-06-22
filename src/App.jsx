@@ -513,7 +513,7 @@ export default function App() {
             <p className="text-xs text-slate-500 font-medium">AFP Horizonte</p>
           </div>
         </div>
-Desarrollado
+
         <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
           {menuItems.map((item) => (
             <button
@@ -563,14 +563,14 @@ Desarrollado
               </button>
             </div>
 
-            <div className="flex items-center justify-center gap-2 mt-1 p-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg w-full">
+            <div className="flex flex-col items-center justify-center gap-2 mt-2 p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg w-full">
               <img 
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://github.com&color=${darkMode ? 'ffffff' : '0f172a'}&bgcolor=${darkMode ? '0f172a' : 'ffffff'}`} 
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://auditoria-garmau.vercel.app&color=${darkMode ? 'ffffff' : '0f172a'}&bgcolor=${darkMode ? '0f172a' : 'ffffff'}`} 
                 alt="QR Code" 
-                className="w-8 h-8 rounded-sm"
+                className="w-20 h-20 rounded-md"
               />
-              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium leading-tight">
-                Escanear <br/> en móvil
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-medium text-center leading-tight">
+                Escanear en móvil
               </span>
             </div>
           </div>
