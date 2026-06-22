@@ -677,8 +677,8 @@ export default function App() {
       {/* Botón menú móvil (se oculta al imprimir) */}
       <div className="md:hidden p-4 flex justify-between items-center bg-white dark:bg-slate-900 shadow-md border-b dark:border-slate-800 z-30 shrink-0 print:hidden">
         <div className="flex items-center gap-2 font-bold text-lg tracking-tight">
-          <div className="p-1.5 bg-blue-600 rounded-lg text-white">
-            <Shield size={20} />
+          <div className="w-8 h-8 rounded-lg overflow-hidden shrink-0">
+            <img src="/img/logo.png" alt="Logo AFP" className="w-full h-full object-cover" />
           </div>
           Auditoría AFP
         </div>
@@ -705,8 +705,8 @@ export default function App() {
       `}>
         <div className="p-6 flex items-center justify-between md:justify-start gap-4 border-b border-slate-100 dark:border-slate-800 shrink-0">
           <div className="flex items-center gap-4">
-            <div className="p-2.5 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl text-white shadow-lg shadow-blue-500/20">
-              <Shield size={28} />
+            <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-lg shadow-blue-500/20 bg-white">
+              <img src="/img/logo.png" alt="Logo AFP" className="w-full h-full object-contain p-1" />
             </div>
             <div>
               <h1 className="font-extrabold text-xl tracking-tight leading-tight">Auditoría Sec</h1>
@@ -816,7 +816,7 @@ export default function App() {
               {/* Portada del Documento PDF */}
               <div className="print:mb-12">
                 <div className="text-center mb-16 border-b-4 border-blue-600 pb-8 mt-12">
-                  <Shield size={64} className="mx-auto text-blue-600 mb-6" />
+                  <img src="/img/logo.png" alt="Logo AFP Horizonte" className="w-24 h-24 mx-auto mb-6 object-contain" />
                   <h1 className="text-5xl font-black text-slate-900 mb-4 tracking-tight">Informe de Auditoría de Seguridad</h1>
                   <h2 className="text-3xl font-bold text-slate-600">AFP Horizonte</h2>
                   <p className="mt-12 text-lg text-slate-500 font-bold uppercase tracking-widest">Auditor Asignado</p>
