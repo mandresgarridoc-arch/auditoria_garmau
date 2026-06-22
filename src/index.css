@@ -2,3 +2,33 @@
 
 /* Obliga a Tailwind v4 a usar la clase .dark en lugar del sistema operativo */
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Evitar que el navegador genere una segunda barra de desplazamiento externa */
+@media screen {
+  html, body {
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+/* Scrollbar Personalizado y Elegante (se aplica a los contenedores internos) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}

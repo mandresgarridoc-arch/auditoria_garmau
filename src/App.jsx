@@ -255,7 +255,13 @@ const Activos = () => (
         <h3 className="text-xl font-bold mb-3 print:text-black">Base de Datos de Afiliados</h3>
         <p className="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-1 leading-relaxed print:text-slate-800">Repositorio central que contiene RUT, nombres, historial laboral, rentas imponibles y saldos de fondos de pensión (A-E).</p>
         <div className="bg-red-50 dark:bg-red-900/10 p-4 rounded-xl text-sm text-red-800 dark:text-red-300 border border-red-100 dark:border-red-900/30 print:bg-white print:border-slate-300">
-          <strong className="block mb-1 flex items-center gap-1 print:text-red-700"><AlertTriangle size={14}/> Riesgo Crítico (SQLi):</strong> <span className="print:text-slate-800">Extracción masiva. Daño reputacional y sanciones legales.</span>
+          <strong className="block mb-1 flex items-center gap-2 print:text-red-700">
+            <span className="relative flex h-3 w-3 print:hidden">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+            </span>
+            Riesgo Crítico (SQLi):
+          </strong> <span className="print:text-slate-800">Extracción masiva. Daño reputacional y sanciones legales.</span>
         </div>
       </div>
 
@@ -273,7 +279,13 @@ const Activos = () => (
         <h3 className="text-xl font-bold mb-3 print:text-black">Infraestructura Web</h3>
         <p className="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-1 leading-relaxed print:text-slate-800">Servidor físico/virtual y sistema operativo base que procesa la lógica transaccional del negocio.</p>
         <div className="bg-purple-50 dark:bg-purple-900/10 p-4 rounded-xl text-sm text-purple-800 dark:text-purple-300 border border-purple-100 dark:border-purple-900/30 print:bg-white print:border-slate-300">
-          <strong className="block mb-1 flex items-center gap-1 print:text-purple-700"><AlertTriangle size={14}/> Riesgo Crítico (OS Cmd):</strong> <span className="print:text-slate-800">Toma de control. Ransomware o infiltración a redes internas.</span>
+          <strong className="block mb-1 flex items-center gap-2 print:text-purple-700">
+            <span className="relative flex h-3 w-3 print:hidden">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
+            </span>
+            Riesgo Crítico (OS Cmd):
+          </strong> <span className="print:text-slate-800">Toma de control. Ransomware o infiltración a redes internas.</span>
         </div>
       </div>
     </div>
@@ -675,12 +687,12 @@ export default function App() {
                 Auditor
               </span>
               <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                [Tu Apellido Nombre]
+                Mauricio Garrido
               </span>
             </div>
             
             <div className="flex gap-2 w-full justify-center">
-              <a href="https://github.com/mandresgarridoc-arch" target="_blank" rel="noreferrer" title="Perfil Mauricio Garrido Github" className="p-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow text-slate-700 dark:text-slate-300 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
+              <a href="https://github.com/mandresgarridoc-arch" target="_blank" rel="noreferrer" title="Perfil Github Mauricio Garrido" className="p-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow text-slate-700 dark:text-slate-300 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
                   <path d="M9 18c-4.51 2-5-2-7-2"/>
@@ -736,7 +748,7 @@ export default function App() {
                   <h1 className="text-5xl font-black text-slate-900 mb-4 tracking-tight">Informe de Auditoría de Seguridad</h1>
                   <h2 className="text-3xl font-bold text-slate-600">AFP Horizonte</h2>
                   <p className="mt-12 text-lg text-slate-500 font-bold uppercase tracking-widest">Auditor Asignado</p>
-                  <p className="text-2xl font-semibold text-slate-800">[Tu Apellido Nombre]</p>
+                  <p className="text-2xl font-semibold text-slate-800">Mauricio Garrido</p>
                 </div>
                 <Resumen />
               </div>
