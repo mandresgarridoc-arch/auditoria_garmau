@@ -73,17 +73,12 @@ const InyeccionSQL = () => (
         <Code className="text-red-500" /> Evidencia del Ataque
       </h3>
       
-      {/* ESPACIO PARA LA IMAGEN */}
-      <div className="w-full bg-slate-50 dark:bg-slate-950 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 p-8 flex flex-col items-center justify-center mb-6 min-h-[300px] group-hover:border-red-300 dark:group-hover:border-red-800 transition-colors print:bg-white print:border-slate-300">
+      <div className="w-full bg-slate-50 dark:bg-slate-950 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 p-8 flex flex-col items-center justify-center mb-6 group-hover:border-red-300 dark:group-hover:border-red-800 transition-colors print:bg-white print:border-slate-300 print:p-4">
         <img 
-          src="/img/sqli_apeno.png" 
+          src="/img/sqli_garmau.png" 
           alt="Evidencia SQLi" 
-          className="max-w-full h-auto rounded shadow-lg hidden group-hover:scale-[1.02] transition-transform duration-500 print:block" 
+          className="max-w-full h-auto rounded shadow-lg group-hover:scale-[1.02] transition-transform duration-500 print:block print:shadow-none print:border print:border-slate-200" 
         />
-        <span className="text-slate-400 dark:text-slate-500 font-medium text-center print:hidden">
-          [Espacio para captura: /img/sqli_apeno.png] <br/>
-          Demuestra la extracción no autorizada de la base de datos de clientes.
-        </span>
       </div>
 
       <div className="bg-slate-900 dark:bg-black p-4 rounded-xl font-mono text-sm mb-8 border border-slate-700 shadow-inner flex items-center gap-3 overflow-x-auto print:bg-slate-100 print:border-slate-300">
@@ -141,17 +136,12 @@ const XSS = () => (
         <Terminal className="text-orange-500" /> Evidencia del Ataque (Reflejado)
       </h3>
       
-      {/* ESPACIO PARA LA IMAGEN */}
-      <div className="w-full bg-slate-50 dark:bg-slate-950 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 p-8 flex flex-col items-center justify-center mb-6 min-h-[300px] hover:border-orange-300 dark:hover:border-orange-800 transition-colors print:bg-white print:border-slate-300">
+      <div className="w-full bg-slate-50 dark:bg-slate-950 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 p-8 flex flex-col items-center justify-center mb-6 hover:border-orange-300 dark:hover:border-orange-800 transition-colors print:bg-white print:border-slate-300 print:p-4">
         <img 
-          src="/img/xss_apeno.png" 
+          src="/img/xss_garmau.png" 
           alt="Evidencia XSS" 
-          className="max-w-full h-auto rounded shadow-lg hidden print:block"
+          className="max-w-full h-auto rounded shadow-lg print:block print:shadow-none print:border print:border-slate-200"
         />
-        <span className="text-slate-400 dark:text-slate-500 font-medium text-center print:hidden">
-          [Espacio para captura: /img/xss_apeno.png] <br/>
-          Evidencia de la ejecución de código JavaScript arbitrario.
-        </span>
       </div>
 
       <div className="bg-slate-900 dark:bg-black p-4 rounded-xl font-mono text-sm mb-8 border border-slate-700 shadow-inner flex items-center gap-3 overflow-x-auto print:bg-slate-100 print:border-slate-300">
@@ -205,17 +195,12 @@ const Comandos = () => (
         <Server className="text-purple-500" /> Evidencia del Ataque (OS Command)
       </h3>
       
-      {/* ESPACIO PARA LA IMAGEN */}
-      <div className="w-full bg-slate-50 dark:bg-slate-950 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 p-8 flex flex-col items-center justify-center mb-6 min-h-[300px] hover:border-purple-300 dark:hover:border-purple-800 transition-colors print:bg-white print:border-slate-300">
+      <div className="w-full bg-slate-50 dark:bg-slate-950 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 p-8 flex flex-col items-center justify-center mb-6 hover:border-purple-300 dark:hover:border-purple-800 transition-colors print:bg-white print:border-slate-300 print:p-4">
         <img 
-          src="/img/comandos_apeno.png" 
+          src="/img/comandos_garmau.png" 
           alt="Evidencia Comandos" 
-          className="max-w-full h-auto rounded shadow-lg hidden print:block"
+          className="max-w-full h-auto rounded shadow-lg print:block print:shadow-none print:border print:border-slate-200"
         />
-        <span className="text-slate-400 dark:text-slate-500 font-medium text-center print:hidden">
-          [Espacio para captura: /img/comandos_apeno.png] <br/>
-          Muestra la toma de control del sistema operativo mediante lectura de /etc/passwd.
-        </span>
       </div>
 
       <div className="bg-slate-900 dark:bg-black p-4 rounded-xl font-mono text-sm mb-8 border border-slate-700 shadow-inner flex items-center gap-3 overflow-x-auto print:bg-slate-100 print:border-slate-300">
@@ -537,7 +522,7 @@ const Prompts = () => (
       <div className="border-l-4 border-emerald-500 pl-6 py-1">
         <h3 className="text-lg font-extrabold mb-4 text-slate-800 dark:text-slate-200 print:text-black">Componente React InyeccionSQL.jsx</h3>
         <div className="bg-slate-50 dark:bg-slate-950 p-5 rounded-xl border border-slate-100 dark:border-slate-800 mb-4 font-mono text-sm text-slate-600 dark:text-slate-400 print:bg-white print:border-slate-300 print:text-slate-800">
-          <span className="font-bold text-emerald-600 dark:text-emerald-500">Prompt:</span> "Crea un componente React con JSX llamado InyeccionSQL que documente el hallazgo de SQLi. Debe mostrar el título 'Inyección SQL', la captura desde /img/sqli_apeno.png, el payload ' OR '1'='1 en un bloque de código, y usar Tailwind CSS y un ícono de Lucide (Database)."
+          <span className="font-bold text-emerald-600 dark:text-emerald-500">Prompt:</span> "Crea un componente React con JSX llamado InyeccionSQL que documente el hallazgo de SQLi. Debe mostrar el título 'Inyección SQL', la captura desde /img/sqli_garmau.png, el payload ' OR '1'='1 en un bloque de código, y usar Tailwind CSS y un ícono de Lucide (Database)."
         </div>
         <p className="text-sm text-slate-700 dark:text-slate-300 flex gap-2 print:text-slate-800">
           <CheckCircle size={18} className="text-emerald-500 shrink-0" />
@@ -695,7 +680,7 @@ export default function App() {
             </div>
             
             <div className="flex gap-2 w-full justify-center">
-              <a href="https://github.com/tu-usuario" target="_blank" rel="noreferrer" title="Ver repositorio en GitHub" className="p-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow text-slate-700 dark:text-slate-300 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
+              <a href="https://github.com/mandresgarridoc-arch" target="_blank" rel="noreferrer" title="Perfil Mauricio Garrido Github" className="p-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow text-slate-700 dark:text-slate-300 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
                   <path d="M9 18c-4.51 2-5-2-7-2"/>
