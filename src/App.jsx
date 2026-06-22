@@ -292,88 +292,149 @@ const Activos = () => (
   </div>
 );
 
-const Matriz = () => (
-  <div className="animate-fade-in space-y-6 pb-8">
-    <div className="flex items-center gap-4 mb-8">
-      <div className="p-3 bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 rounded-2xl shadow-sm border border-rose-200 dark:border-rose-800">
-        <Activity size={32} />
-      </div>
-      <h2 className="text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-rose-600 to-pink-500 dark:from-rose-400 dark:to-pink-300">
-        Matriz de Riesgos
-      </h2>
-    </div>
+const Matriz = () => {
+  const riesgosData = [
+    {
+      id: 'cmd',
+      vuln: 'Inyección de Comandos',
+      iconDesktop: <Terminal size={16} className="text-purple-500 opacity-50 group-hover:opacity-100 print:opacity-100"/>,
+      iconMobile: <Terminal size={18} className="text-purple-500"/>,
+      activo: 'Infraestructura Web',
+      prob: '3',
+      imp: '5',
+      riesgo: '15 (Alto)',
+      colorClass: 'bg-orange-500 text-white shadow-orange-500/30 print:shadow-none print:border print:border-orange-500 print:text-orange-700 print:bg-orange-50'
+    },
+    {
+      id: 'sqli',
+      vuln: 'Inyección SQL',
+      iconDesktop: <Database size={16} className="text-red-500 opacity-50 group-hover:opacity-100 print:opacity-100"/>,
+      iconMobile: <Database size={18} className="text-red-500"/>,
+      activo: 'Base de Datos',
+      prob: '4',
+      imp: '5',
+      riesgo: '20 (Crítico)',
+      colorClass: 'bg-red-600 text-white shadow-red-600/30 print:shadow-none print:border print:border-red-600 print:text-red-700 print:bg-red-50'
+    },
+    {
+      id: 'xss',
+      vuln: 'Cross-Site Scripting',
+      iconDesktop: <Code size={16} className="text-orange-500 opacity-50 group-hover:opacity-100 print:opacity-100"/>,
+      iconMobile: <Code size={18} className="text-orange-500"/>,
+      activo: 'Sesiones (Navegador)',
+      prob: '5',
+      imp: '3',
+      riesgo: '15 (Alto)',
+      colorClass: 'bg-orange-500 text-white shadow-orange-500/30 print:shadow-none print:border print:border-orange-500 print:text-orange-700 print:bg-orange-50'
+    }
+  ];
 
-    <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-x-auto hover:shadow-lg transition-shadow print:shadow-none print:border-slate-300">
-      <table className="w-full text-left border-collapse">
-        <thead>
-          <tr className="bg-slate-50 dark:bg-slate-800/50 border-b-2 border-slate-200 dark:border-slate-700 print:bg-slate-100 print:border-slate-300">
-            <th className="p-5 font-bold text-slate-700 dark:text-slate-200 print:text-slate-900">Vulnerabilidad</th>
-            <th className="p-5 font-bold text-slate-700 dark:text-slate-200 print:text-slate-900">Activo Afectado</th>
-            <th className="p-5 font-bold text-center text-slate-700 dark:text-slate-200 print:text-slate-900">Probabilidad</th>
-            <th className="p-5 font-bold text-center text-slate-700 dark:text-slate-200 print:text-slate-900">Impacto</th>
-            <th className="p-5 font-bold text-center text-slate-700 dark:text-slate-200 print:text-slate-900">Riesgo (P×I)</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-slate-100 dark:divide-slate-800 print:divide-slate-300">
-          <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
-            <td className="p-5 font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2 print:text-slate-800"><Terminal size={16} className="text-purple-500 opacity-50 group-hover:opacity-100 print:opacity-100"/> Inyección de Comandos</td>
-            <td className="p-5 text-slate-600 dark:text-slate-400 print:text-slate-800">Infraestructura Web</td>
-            <td className="p-5 text-center font-medium print:text-slate-800">3</td>
-            <td className="p-5 text-center font-medium print:text-slate-800">5</td>
-            <td className="p-5 text-center">
-              <span className="inline-flex items-center justify-center bg-orange-500 text-white px-4 py-1.5 rounded-full font-bold text-sm shadow-sm shadow-orange-500/30 print:shadow-none print:border print:border-orange-500 print:text-orange-700 print:bg-orange-50">15 (Alto)</span>
-            </td>
-          </tr>
-          <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
-            <td className="p-5 font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2 print:text-slate-800"><Database size={16} className="text-red-500 opacity-50 group-hover:opacity-100 print:opacity-100"/> Inyección SQL</td>
-            <td className="p-5 text-slate-600 dark:text-slate-400 print:text-slate-800">Base de Datos</td>
-            <td className="p-5 text-center font-medium print:text-slate-800">4</td>
-            <td className="p-5 text-center font-medium print:text-slate-800">5</td>
-            <td className="p-5 text-center">
-              <span className="inline-flex items-center justify-center bg-red-600 text-white px-4 py-1.5 rounded-full font-bold text-sm shadow-sm shadow-red-600/30 print:shadow-none print:border print:border-red-600 print:text-red-700 print:bg-red-50">20 (Crítico)</span>
-            </td>
-          </tr>
-          <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
-            <td className="p-5 font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2 print:text-slate-800"><Code size={16} className="text-orange-500 opacity-50 group-hover:opacity-100 print:opacity-100"/> Cross-Site Scripting</td>
-            <td className="p-5 text-slate-600 dark:text-slate-400 print:text-slate-800">Sesiones (Navegador)</td>
-            <td className="p-5 text-center font-medium print:text-slate-800">5</td>
-            <td className="p-5 text-center font-medium print:text-slate-800">3</td>
-            <td className="p-5 text-center">
-              <span className="inline-flex items-center justify-center bg-orange-500 text-white px-4 py-1.5 rounded-full font-bold text-sm shadow-sm shadow-orange-500/30 print:shadow-none print:border print:border-orange-500 print:text-orange-700 print:bg-orange-50">15 (Alto)</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  return (
+    <div className="animate-fade-in space-y-6 pb-8">
+      <div className="flex items-center gap-4 mb-8">
+        <div className="p-3 bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 rounded-2xl shadow-sm border border-rose-200 dark:border-rose-800">
+          <Activity size={32} />
+        </div>
+        <h2 className="text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-rose-600 to-pink-500 dark:from-rose-400 dark:to-pink-300">
+          Matriz de Riesgos
+        </h2>
+      </div>
 
-    <div className="bg-slate-900 dark:bg-black text-white p-8 rounded-2xl shadow-lg border border-slate-800 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] print:bg-none print:bg-white print:border-slate-300 print:shadow-none print:text-black">
-      <h3 className="text-2xl font-bold mb-6 flex items-center gap-2 print:text-black"><Activity className="text-rose-400 print:text-rose-600"/> Análisis de Priorización</h3>
-      <div className="space-y-6">
-        <div className="flex gap-4">
-          <div className="w-10 h-10 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-black shrink-0 border border-red-500/30 print:bg-red-50 print:text-red-700 print:border-red-300">1</div>
-          <div>
-            <h4 className="font-bold text-lg text-red-400 print:text-red-700">Riesgo Crítico (SQLi)</h4>
-            <p className="text-slate-300 text-sm mt-1 leading-relaxed print:text-slate-800">Amenaza existencial para AFP Horizonte. Debe parchearse en código y bloquearse en el WAF inmediatamente.</p>
-          </div>
+      <div className="bg-white dark:bg-slate-900 p-4 md:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow print:shadow-none print:border-slate-300 print:p-0">
+        
+        {/* VISTA MÓVIL: Formato Tarjetas (Se oculta en desktop y PDF) */}
+        <div className="md:hidden space-y-4 print:hidden">
+          {riesgosData.map((r) => (
+            <div key={`mobile-${r.id}`} className="bg-slate-50 dark:bg-slate-800/50 p-5 rounded-xl border border-slate-100 dark:border-slate-700/50 shadow-sm">
+              <div className="flex items-center gap-2 font-bold text-lg text-slate-800 dark:text-slate-200 mb-4 border-b border-slate-200 dark:border-slate-700 pb-2">
+                {r.iconMobile} {r.vuln}
+              </div>
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">Activo Afectado</span>
+                  <span className="text-slate-800 dark:text-slate-200 font-semibold text-right">{r.activo}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">Probabilidad</span>
+                  <span className="text-slate-800 dark:text-slate-200 font-semibold">{r.prob}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">Impacto</span>
+                  <span className="text-slate-800 dark:text-slate-200 font-semibold">{r.imp}</span>
+                </div>
+                <div className="flex justify-between items-center pt-2 border-t border-slate-200 dark:border-slate-700">
+                  <span className="text-slate-500 dark:text-slate-400 font-bold">Riesgo (P×I)</span>
+                  <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full font-bold text-xs shadow-sm ${r.colorClass}`}>
+                    {r.riesgo}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-        <div className="flex gap-4">
-          <div className="w-10 h-10 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center font-black shrink-0 border border-orange-500/30 print:bg-orange-50 print:text-orange-700 print:border-orange-300">2</div>
-          <div>
-            <h4 className="font-bold text-lg text-orange-400 print:text-orange-700">Riesgo Alto (Comandos)</h4>
-            <p className="text-slate-300 text-sm mt-1 leading-relaxed print:text-slate-800">Pérdida total del servidor. Requiere revisión de privilegios y despliegue de contenedores urgentes.</p>
-          </div>
+
+        {/* VISTA DESKTOP y PDF: Tabla Clásica (Se oculta en móvil) */}
+        <div className="hidden md:block overflow-x-auto print:block">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-slate-50 dark:bg-slate-800/50 border-b-2 border-slate-200 dark:border-slate-700 print:bg-slate-100 print:border-slate-300">
+                <th className="p-5 font-bold text-slate-700 dark:text-slate-200 print:text-slate-900">Vulnerabilidad</th>
+                <th className="p-5 font-bold text-slate-700 dark:text-slate-200 print:text-slate-900">Activo Afectado</th>
+                <th className="p-5 font-bold text-center text-slate-700 dark:text-slate-200 print:text-slate-900">Probabilidad</th>
+                <th className="p-5 font-bold text-center text-slate-700 dark:text-slate-200 print:text-slate-900">Impacto</th>
+                <th className="p-5 font-bold text-center text-slate-700 dark:text-slate-200 print:text-slate-900">Riesgo (P×I)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 print:divide-slate-300">
+              {riesgosData.map((r) => (
+                <tr key={`desktop-${r.id}`} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
+                  <td className="p-5 font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2 print:text-slate-800">
+                    {r.iconDesktop} {r.vuln}
+                  </td>
+                  <td className="p-5 text-slate-600 dark:text-slate-400 print:text-slate-800">{r.activo}</td>
+                  <td className="p-5 text-center font-medium print:text-slate-800">{r.prob}</td>
+                  <td className="p-5 text-center font-medium print:text-slate-800">{r.imp}</td>
+                  <td className="p-5 text-center">
+                    <span className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full font-bold text-sm shadow-sm ${r.colorClass}`}>
+                      {r.riesgo}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <div className="flex gap-4">
-          <div className="w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-black shrink-0 border border-amber-500/30 print:bg-amber-50 print:text-amber-700 print:border-amber-300">3</div>
-          <div>
-            <h4 className="font-bold text-lg text-amber-400 print:text-amber-700">Riesgo Alto (XSS)</h4>
-            <p className="text-slate-300 text-sm mt-1 leading-relaxed print:text-slate-800">Requiere interacción de la víctima, pero su probabilidad es altísima. Exige saneamiento de entradas en el próximo sprint.</p>
+      </div>
+
+      <div className="bg-slate-900 dark:bg-black text-white p-8 rounded-2xl shadow-lg border border-slate-800 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] print:bg-none print:bg-white print:border-slate-300 print:shadow-none print:text-black">
+        <h3 className="text-2xl font-bold mb-6 flex items-center gap-2 print:text-black"><Activity className="text-rose-400 print:text-rose-600"/> Análisis de Priorización</h3>
+        <div className="space-y-6">
+          <div className="flex gap-4">
+            <div className="w-10 h-10 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-black shrink-0 border border-red-500/30 print:bg-red-50 print:text-red-700 print:border-red-300">1</div>
+            <div>
+              <h4 className="font-bold text-lg text-red-400 print:text-red-700">Riesgo Crítico (SQLi)</h4>
+              <p className="text-slate-300 text-sm mt-1 leading-relaxed print:text-slate-800">Amenaza existencial para AFP Horizonte. Debe parchearse en código y bloquearse en el WAF inmediatamente.</p>
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <div className="w-10 h-10 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center font-black shrink-0 border border-orange-500/30 print:bg-orange-50 print:text-orange-700 print:border-orange-300">2</div>
+            <div>
+              <h4 className="font-bold text-lg text-orange-400 print:text-orange-700">Riesgo Alto (Comandos)</h4>
+              <p className="text-slate-300 text-sm mt-1 leading-relaxed print:text-slate-800">Pérdida total del servidor. Requiere revisión de privilegios y despliegue de contenedores urgentes.</p>
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <div className="w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-black shrink-0 border border-amber-500/30 print:bg-amber-50 print:text-amber-700 print:border-amber-300">3</div>
+            <div>
+              <h4 className="font-bold text-lg text-amber-400 print:text-amber-700">Riesgo Alto (XSS)</h4>
+              <p className="text-slate-300 text-sm mt-1 leading-relaxed print:text-slate-800">Requiere interacción de la víctima, pero su probabilidad es altísima. Exige saneamiento de entradas en el próximo sprint.</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Controles = () => (
   <div className="animate-fade-in space-y-6 pb-8">
