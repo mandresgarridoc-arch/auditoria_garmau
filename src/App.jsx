@@ -4,10 +4,8 @@ import {
   Server, AlertTriangle, Lock, Activity, Moon, Sun, 
   QrCode, Download, Menu, X, FileText, CheckCircle, Zap, 
   Cpu, Wrench, PenTool, ShieldAlert, ShieldCheck, Search,
-  Eye, Fingerprint, Network
+  Eye, Fingerprint, Network, BookOpen
 } from 'lucide-react';
-
-// --- COMPONENTES DE SECCIÓN ---
 
 const Resumen = () => (
   <div className="animate-fade-in space-y-6 pb-8">
@@ -89,17 +87,17 @@ const InyeccionSQL = () => (
         <div className="bg-[#86BBD8]/10 dark:bg-slate-800/50 p-6 rounded-xl border border-[#33658A]/20 dark:border-slate-700/50 print:bg-white print:border-slate-300">
           <h4 className="text-lg font-bold mb-3 flex items-center gap-2 text-slate-800 dark:text-slate-100 print:text-black"><Zap size={20} className="text-red-500"/> Explicación Técnica</h4>
           <p className="text-slate-700 dark:text-slate-400 text-sm leading-relaxed print:text-slate-800 mb-3">
-            La aplicación toma la entrada del usuario y la concatena directamente dentro de la sentencia SQL sin validación. Al introducir el payload <code className="bg-white dark:bg-slate-700 px-1 rounded">' OR '1'='1</code>, el atacante "cierra" la consulta original y añade una condición siempre verdadera, engañando a la base de datos para que devuelva todos los registros.
+            La aplicación toma la entrada del usuario y la concatena directamente dentro de la sentencia SQL sin validación. Al introducir el payload <code className="bg-white dark:bg-slate-700 px-1 rounded">' OR '1'='1</code>, el atacante "cierra" la consulta original y añade una condición siempre verdadera (`1=1`). Esto engaña a la base de datos para que ignore el resto de los filtros y devuelva todos los registros.
           </p>
         </div>
         
         <div className="bg-red-50 dark:bg-red-900/10 p-6 rounded-xl border border-red-200 dark:border-red-900/30 print:bg-white print:border-slate-300 hover:shadow-md transition-shadow">
-          <h4 className="text-lg font-bold mb-3 flex items-center gap-2 text-red-700 dark:text-red-400 print:text-red-700"><ShieldAlert size={20}/> Datos en Peligro</h4>
+          <h4 className="text-lg font-bold mb-3 flex items-center gap-2 text-red-700 dark:text-red-400 print:text-red-700"><ShieldAlert size={20}/> Datos en Peligro (Impacto)</h4>
           <p className="text-red-800/80 dark:text-red-300/80 text-sm leading-relaxed mb-3 print:text-slate-800">Compromete el activo más crítico: la base de datos de afiliados.</p>
           <ul className="list-disc pl-5 space-y-1 text-sm text-red-800/90 dark:text-red-300/90 print:text-slate-800">
-            <li><strong>Personales:</strong> RUT, nombres, fechas de nacimiento, direcciones.</li>
-            <li><strong>Financieros:</strong> Historial de cotizaciones, saldos totales en cuentas de capitalización (Fondos A-E).</li>
-            <li><strong>Credenciales:</strong> Contraseñas de acceso al portal.</li>
+            <li><strong>Datos Personales:</strong> RUT, nombres, fechas de nacimiento, direcciones, teléfonos.</li>
+            <li><strong>Info Financiera:</strong> Historial de cotizaciones, saldos totales en cuentas de capitalización y rentas declaradas.</li>
+            <li><strong>Credenciales:</strong> Posibilidad de extraer contraseñas de acceso al portal y someterlas a fuerza bruta.</li>
           </ul>
         </div>
       </div>
@@ -109,24 +107,24 @@ const InyeccionSQL = () => (
         <div className="grid md:grid-cols-2 gap-4">
           <div className="flex gap-3 hover:translate-x-1 transition-transform">
             <div className="w-8 h-8 rounded bg-red-900/50 flex items-center justify-center font-bold text-red-300 shrink-0 border border-red-700/50 print:bg-slate-200 print:border-none print:text-slate-800">1</div>
-            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Aislar:</strong> Desconectar la app web de la base de datos o red externa para detener la exfiltración.</p>
+            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Aislar:</strong> Desconectar la app web de la base de datos o red externa para detener la exfiltración masiva de forma inmediata.</p>
           </div>
           <div className="flex gap-3 hover:translate-x-1 transition-transform">
             <div className="w-8 h-8 rounded bg-red-900/50 flex items-center justify-center font-bold text-red-300 shrink-0 border border-red-700/50 print:bg-slate-200 print:border-none print:text-slate-800">2</div>
-            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Investigar:</strong> Analizar logs para identificar la IP, payload y alcance de datos comprometidos.</p>
+            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Investigar:</strong> Analizar los logs del servidor web y BD para identificar la IP del atacante, payload usado y alcance de datos fugados.</p>
           </div>
           <div className="flex gap-3 hover:translate-x-1 transition-transform">
             <div className="w-8 h-8 rounded bg-red-900/50 flex items-center justify-center font-bold text-red-300 shrink-0 border border-red-700/50 print:bg-slate-200 print:border-none print:text-slate-800">3</div>
-            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Parchear:</strong> Corregir el código fuente implementando consultas parametrizadas de emergencia.</p>
+            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Parchear:</strong> Corregir la vulnerabilidad en el código fuente implementando consultas parametrizadas de emergencia.</p>
           </div>
           <div className="flex gap-3 hover:translate-x-1 transition-transform">
             <div className="w-8 h-8 rounded bg-red-900/50 flex items-center justify-center font-bold text-red-300 shrink-0 border border-red-700/50 print:bg-slate-200 print:border-none print:text-slate-800">4</div>
-            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Restaurar & Notificar:</strong> Restaurar backups limpios, cambiar credenciales y notificar a la Superintendencia.</p>
+            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Restaurar & Fortalecer:</strong> Cambiar credenciales de BD y evaluar notificación obligatoria a la Superintendencia.</p>
           </div>
         </div>
       </div>
 
-      <div className="mt-8 flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 mb-8">
         <div className="bg-red-50 dark:bg-red-900/10 text-red-800 dark:text-red-300 px-6 py-4 rounded-xl border border-red-200 dark:border-red-800/50 flex-1 min-w-[200px] shadow-sm print:bg-none print:bg-white print:border-slate-300 print:text-slate-900">
           <span className="block text-xs uppercase font-extrabold tracking-widest mb-1 opacity-80 print:text-slate-500">Puntaje CVSS 3.1</span>
           <div className="flex items-baseline gap-2">
@@ -136,13 +134,26 @@ const InyeccionSQL = () => (
           <span className="block text-[10px] mt-2 opacity-70 font-mono print:text-slate-500">CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:L/A:N</span>
         </div>
         <div className="bg-[#86BBD8]/10 dark:bg-slate-800/30 px-6 py-4 rounded-xl border border-[#33658A]/30 dark:border-slate-700 flex-[2] min-w-[300px] shadow-sm print:bg-white print:border-slate-300 hover:shadow-md transition-shadow">
-          <h4 className="text-[#33658A] dark:text-[#86BBD8] font-bold mb-2 flex items-center gap-2 print:text-slate-800"><ShieldCheck size={18}/> Medidas Preventivas</h4>
+          <h4 className="text-[#33658A] dark:text-[#86BBD8] font-bold mb-2 flex items-center gap-2 print:text-slate-800"><ShieldCheck size={18}/> Medidas Preventivas (Defensa)</h4>
           <ul className="list-disc pl-5 space-y-1 text-sm text-slate-700 dark:text-slate-300 print:text-slate-800">
-            <li><strong>Consultas Parametrizadas:</strong> Evita que los datos se traten como comandos ejecutables.</li>
-            <li><strong>Mínimo Privilegio:</strong> Usuario de BD sin permisos administrativos (`DROP`, `ALTER`).</li>
-            <li><strong>Mitigación WAF:</strong> Bloquear tráfico entrante con firmas SQLi conocidas.</li>
+            <li><strong>Consultas Parametrizadas (Prepared Statements):</strong> Los datos se envían separados del comando SQL, impidiendo ejecución maliciosa.</li>
+            <li><strong>Validación Estricta:</strong> Implementar listas blancas (ej: rechazar IDs que no sean números).</li>
+            <li><strong>Mínimo Privilegio:</strong> Usar cuentas de BD sin permisos administrativos (`DROP`, `ALTER`).</li>
+            <li><strong>WAF Perimetral:</strong> Bloquear tráfico con firmas OWASP de Inyección SQL.</li>
           </ul>
         </div>
+      </div>
+
+      {/* Referencias Académicas */}
+      <div className="bg-slate-50 dark:bg-slate-800/30 p-5 rounded-xl border border-slate-200 dark:border-slate-700 print:bg-white print:border-slate-300">
+        <h4 className="text-sm font-bold flex items-center gap-2 text-slate-800 dark:text-slate-200 mb-2 print:text-black">
+          <BookOpen size={16} className="text-[#33658A] dark:text-[#86BBD8]" /> Fuentes y Referencias Académicas
+        </h4>
+        <ul className="text-xs text-slate-600 dark:text-slate-400 space-y-2 print:text-slate-800">
+          <li><strong>OWASP Top 10 (2021):</strong> Base teórica para la Explicación Técnica (A03:2021-Injection) y estándar de mitigación <em>Prepared Statements</em> (SQL Injection Prevention Cheat Sheet).</li>
+          <li><strong>NIST & FIRST:</strong> Cálculo de la Severidad (8.5 ALTA) basado en el Common Vulnerability Scoring System (CWE-89).</li>
+          <li><strong>PortSwigger Web Security Academy:</strong> Referencia para modelar el impacto de negocio y la sección de exfiltración.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -178,16 +189,17 @@ const XSS = () => (
         <div className="bg-[#86BBD8]/10 dark:bg-slate-800/50 p-6 rounded-xl border border-[#33658A]/20 dark:border-slate-700/50 print:bg-white print:border-slate-300">
           <h4 className="text-lg font-bold mb-3 text-slate-800 dark:text-slate-100 print:text-black">Explicación Técnica</h4>
           <p className="text-slate-700 dark:text-slate-400 text-sm leading-relaxed print:text-slate-800">
-            El servidor recibe el input del usuario y lo "refleja" inmediatamente en el HTML sin codificar (Output Encoding). El navegador de la víctima no distingue el código inyectado y lo ejecuta dentro del contexto de confianza del sitio de la AFP.
+            El servidor recibe el input del usuario y lo "refleja" inmediatamente en el HTML sin codificar (Output Encoding). El navegador de la víctima no distingue el código inyectado y lo ejecuta dentro del contexto de confianza del sitio de la AFP, pensando que proviene de una fuente legítima.
           </p>
         </div>
         <div className="bg-orange-50 dark:bg-orange-900/10 p-6 rounded-xl border border-orange-200 dark:border-orange-900/30 print:bg-white print:border-slate-300 hover:shadow-md transition-shadow">
-          <h4 className="text-lg font-bold mb-3 text-orange-700 dark:text-orange-400 flex items-center gap-2 print:text-orange-700"><ShieldAlert size={20}/> Datos en Peligro</h4>
-          <p className="text-orange-800/80 dark:text-orange-300/80 text-sm mb-3 print:text-slate-800">Permite el Robo de Sesión e intercepción de datos de la víctima:</p>
+          <h4 className="text-lg font-bold mb-3 text-orange-700 dark:text-orange-400 flex items-center gap-2 print:text-orange-700"><ShieldAlert size={20}/> Datos en Peligro (Impacto)</h4>
+          <p className="text-orange-800/80 dark:text-orange-300/80 text-sm mb-3 print:text-slate-800">El atacante opera dentro de la sesión de confianza del afiliado:</p>
           <ul className="list-disc pl-5 space-y-1 text-sm text-orange-800/90 dark:text-orange-300/90 print:text-slate-800">
-            <li><strong>Cookies de Sesión:</strong> Secuestro total de la cuenta.</li>
-            <li><strong>Información en Pantalla:</strong> Lectura de saldos y cartolas.</li>
-            <li><strong>Keylogging:</strong> Captura de nuevas contraseñas digitadas.</li>
+            <li><strong>Cookies de Sesión:</strong> Secuestro total de la cuenta (Session Hijacking).</li>
+            <li><strong>Info en Pantalla:</strong> Lectura y exfiltración de saldos y rentabilidades.</li>
+            <li><strong>Almacenamiento Local:</strong> Robo de tokens en LocalStorage/SessionStorage.</li>
+            <li><strong>Keylogging:</strong> Captura de teclas si el atacante inyecta un formulario falso en la página.</li>
           </ul>
         </div>
       </div>
@@ -197,24 +209,24 @@ const XSS = () => (
         <div className="grid md:grid-cols-2 gap-4">
           <div className="flex gap-3 hover:translate-x-1 transition-transform">
             <div className="w-8 h-8 rounded bg-orange-900/50 flex items-center justify-center font-bold text-orange-300 shrink-0 border border-orange-700/50 print:bg-slate-200 print:border-none print:text-slate-800">1</div>
-            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Identificar:</strong> Localizar el punto de entrada y reflejo en el código de la aplicación.</p>
+            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Identificar & Corregir:</strong> Localizar el punto de entrada y aplicar codificación de salida HTML de inmediato.</p>
           </div>
           <div className="flex gap-3 hover:translate-x-1 transition-transform">
             <div className="w-8 h-8 rounded bg-orange-900/50 flex items-center justify-center font-bold text-orange-300 shrink-0 border border-orange-700/50 print:bg-slate-200 print:border-none print:text-slate-800">2</div>
-            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Invalidar Sesiones:</strong> Forzar el cierre de sesión masivo para inutilizar cookies robadas.</p>
+            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Invalidar Sesiones:</strong> Forzar el cierre de sesión masivo o de sospechosos para inutilizar cookies robadas.</p>
           </div>
           <div className="flex gap-3 hover:translate-x-1 transition-transform">
             <div className="w-8 h-8 rounded bg-orange-900/50 flex items-center justify-center font-bold text-orange-300 shrink-0 border border-orange-700/50 print:bg-slate-200 print:border-none print:text-slate-800">3</div>
-            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Analizar Logs:</strong> Buscar en el servidor peticiones que coincidan con los payloads XSS inyectados.</p>
+            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Analizar Logs:</strong> Buscar peticiones en el servidor que contengan el payload para detectar campañas de phishing.</p>
           </div>
           <div className="flex gap-3 hover:translate-x-1 transition-transform">
             <div className="w-8 h-8 rounded bg-orange-900/50 flex items-center justify-center font-bold text-orange-300 shrink-0 border border-orange-700/50 print:bg-slate-200 print:border-none print:text-slate-800">4</div>
-            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Corregir:</strong> Aplicar codificación de salida y advertir a usuarios de posibles correos phishing.</p>
+            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Comunicación:</strong> Opcionalmente alertar a los usuarios sobre correos sospechosos y recomendar cambio de claves.</p>
           </div>
         </div>
       </div>
 
-      <div className="mt-8 flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 mb-8">
         <div className="bg-orange-50 dark:bg-orange-900/10 text-orange-800 dark:text-orange-300 px-6 py-4 rounded-xl border border-orange-200 dark:border-orange-800/50 flex-1 min-w-[200px] shadow-sm print:bg-none print:bg-white print:border-slate-300 print:text-slate-900">
           <span className="block text-xs uppercase font-extrabold tracking-widest mb-1 opacity-80 print:text-slate-500">Puntaje CVSS 3.1</span>
           <div className="flex items-baseline gap-2">
@@ -224,13 +236,25 @@ const XSS = () => (
           <span className="block text-[10px] mt-2 opacity-70 font-mono print:text-slate-500">CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N</span>
         </div>
         <div className="bg-[#86BBD8]/10 dark:bg-slate-800/30 px-6 py-4 rounded-xl border border-[#33658A]/30 dark:border-slate-700 flex-[2] min-w-[300px] shadow-sm print:bg-white print:border-slate-300 hover:shadow-md transition-shadow">
-          <h4 className="text-[#33658A] dark:text-[#86BBD8] font-bold mb-2 flex items-center gap-2 print:text-slate-800"><ShieldCheck size={18}/> Medidas Preventivas</h4>
+          <h4 className="text-[#33658A] dark:text-[#86BBD8] font-bold mb-2 flex items-center gap-2 print:text-slate-800"><ShieldCheck size={18}/> Medidas Preventivas (Defensa)</h4>
           <ul className="list-disc pl-5 space-y-1 text-sm text-slate-700 dark:text-slate-300 print:text-slate-800">
-            <li><strong>Output Encoding Contextual:</strong> Transformar caracteres `&lt;` y `&gt;` en entidades HTML seguras (`&amp;lt;`).</li>
-            <li><strong>Content Security Policy (CSP):</strong> Cabeceras estrictas para bloquear scripts no autorizados.</li>
-            <li><strong>Cookies Seguras:</strong> Usar banderas `HttpOnly` y `Secure` para las sesiones.</li>
+            <li><strong>Output Encoding Contextual:</strong> Convertir caracteres peligrosos en entidades HTML seguras (`&lt;`).</li>
+            <li><strong>Content Security Policy (CSP):</strong> Cabeceras estrictas HTTP para bloquear ejecución de `inline-scripts`.</li>
+            <li><strong>Cookies Seguras:</strong> Usar banderas `HttpOnly` (bloquea JS) y `Secure` (solo HTTPS) en cookies de sesión.</li>
           </ul>
         </div>
+      </div>
+
+      {/* Referencias Académicas */}
+      <div className="bg-slate-50 dark:bg-slate-800/30 p-5 rounded-xl border border-slate-200 dark:border-slate-700 print:bg-white print:border-slate-300">
+        <h4 className="text-sm font-bold flex items-center gap-2 text-slate-800 dark:text-slate-200 mb-2 print:text-black">
+          <BookOpen size={16} className="text-[#33658A] dark:text-[#86BBD8]" /> Fuentes y Referencias Académicas
+        </h4>
+        <ul className="text-xs text-slate-600 dark:text-slate-400 space-y-2 print:text-slate-800">
+          <li><strong>OWASP:</strong> Mecanismo de ataque (A03:2021) y políticas de saneamiento dictadas en el <em>Cross Site Scripting Prevention Cheat Sheet</em>.</li>
+          <li><strong>NIST & FIRST:</strong> Puntaje 6.1 (CWE-79). Refleja un vector remoto con interacción del usuario (`UI:R`) y cambio de alcance al navegador (`S:C`).</li>
+          <li><strong>MDN Web Docs (Mozilla):</strong> Base técnica para la implementación de <em>Content-Security-Policy</em> como mitigación.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -266,17 +290,17 @@ const Comandos = () => (
         <div className="bg-[#86BBD8]/10 dark:bg-slate-800/50 p-6 rounded-xl border border-[#33658A]/20 dark:border-slate-700/50 print:bg-white print:border-slate-300">
           <h4 className="text-lg font-bold mb-3 text-slate-800 dark:text-slate-100 print:text-black">Explicación Técnica</h4>
           <p className="text-slate-700 dark:text-slate-400 text-sm leading-relaxed print:text-slate-800">
-            La web toma una dirección IP e invoca un comando del sistema (`ping`) sin filtrar metacaracteres. Usando el punto y coma (`;`), el atacante termina el comando esperado e inicia uno nuevo (`cat /etc/passwd`) con los privilegios del servidor web.
+            La web toma una dirección IP e invoca un comando del sistema (`ping`) sin filtrar metacaracteres. Usando el punto y coma (`;` - delimitador Unix), el atacante termina el comando esperado e inicia uno nuevo (`cat /etc/passwd`) con los privilegios del servidor web, exponiendo información.
           </p>
         </div>
         <div className="bg-red-50 dark:bg-red-900/10 p-6 rounded-xl border border-red-200 dark:border-red-900/30 print:bg-white print:border-slate-300 hover:shadow-md transition-shadow">
-          <h4 className="text-lg font-bold mb-3 text-red-700 dark:text-red-400 flex items-center gap-2 print:text-red-700"><ShieldAlert size={20}/> Daño Estructural</h4>
-          <p className="text-red-800/80 dark:text-red-300/80 text-sm mb-3 print:text-slate-800">Representa la toma total de la infraestructura previsional:</p>
+          <h4 className="text-lg font-bold mb-3 text-red-700 dark:text-red-400 flex items-center gap-2 print:text-red-700"><ShieldAlert size={20}/> Daño Estructural (Impacto)</h4>
+          <p className="text-red-800/80 dark:text-red-300/80 text-sm mb-3 print:text-slate-800">Es el escenario más destructivo. Compromete la infraestructura web y de red:</p>
           <ul className="list-disc pl-5 space-y-1 text-sm text-red-800/90 dark:text-red-300/90 print:text-slate-800">
-            <li><strong>Control Total (Root):</strong> Escalada de privilegios en el OS.</li>
-            <li><strong>Archivos Core:</strong> Robo de credenciales hardcodeadas, código y llaves API.</li>
-            <li><strong>Pivoteo Interno:</strong> Uso del servidor para atacar otras redes de la AFP.</li>
-            <li><strong>Ransomware:</strong> Despliegue de malware paralizando operaciones.</li>
+            <li><strong>Control Total (Root):</strong> Escalada de privilegios en el OS base.</li>
+            <li><strong>Archivos Core:</strong> Robo de código y credenciales de Base de Datos hardcodeadas.</li>
+            <li><strong>Pivoteo Interno:</strong> Uso del servidor de "puente" para atacar redes de back-office.</li>
+            <li><strong>Ransomware:</strong> Despliegue de malware paralizando la Denegación de Servicio (DoS).</li>
           </ul>
         </div>
       </div>
@@ -286,24 +310,24 @@ const Comandos = () => (
         <div className="grid md:grid-cols-2 gap-4">
           <div className="flex gap-3 hover:translate-x-1 transition-transform">
             <div className="w-8 h-8 rounded bg-red-900/50 flex items-center justify-center font-bold text-red-300 shrink-0 border border-red-700/50 print:bg-slate-200 print:border-none print:text-slate-800">1</div>
-            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Aislar de Inmediato:</strong> Desconectar la máquina física/virtual de la red sin apagarla (para análisis de memoria).</p>
+            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Aislar de Inmediato:</strong> Desconectar la máquina de la red sin apagarla (para guardar la memoria RAM).</p>
           </div>
           <div className="flex gap-3 hover:translate-x-1 transition-transform">
             <div className="w-8 h-8 rounded bg-red-900/50 flex items-center justify-center font-bold text-red-300 shrink-0 border border-red-700/50 print:bg-slate-200 print:border-none print:text-slate-800">2</div>
-            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Forense:</strong> Buscar IOCs en el historial del shell, procesos extraños y archivos creados recientemente.</p>
+            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Forense (IOCs):</strong> Buscar en el historial del shell, procesos no autorizados y backdoors creados.</p>
           </div>
           <div className="flex gap-3 hover:translate-x-1 transition-transform">
             <div className="w-8 h-8 rounded bg-red-900/50 flex items-center justify-center font-bold text-red-300 shrink-0 border border-red-700/50 print:bg-slate-200 print:border-none print:text-slate-800">3</div>
-            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Reconstrucción:</strong> Considerar el SO totalmente perdido. Reconstruir desde una "Golden Image" limpia.</p>
+            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Reconstrucción:</strong> El SO está perdido. Levantar nueva infraestructura desde una "Golden Image" limpia.</p>
           </div>
           <div className="flex gap-3 hover:translate-x-1 transition-transform">
             <div className="w-8 h-8 rounded bg-red-900/50 flex items-center justify-center font-bold text-red-300 shrink-0 border border-red-700/50 print:bg-slate-200 print:border-none print:text-slate-800">4</div>
-            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Revisión y Rotación:</strong> Rotar todas las contraseñas que estaban en el servidor y parchear el código.</p>
+            <p className="text-sm text-slate-300 print:text-slate-800"><strong>Rotación Masiva:</strong> Rotar contraseñas, tokens y llaves API que estaban en el servidor vulnerado.</p>
           </div>
         </div>
       </div>
 
-      <div className="mt-8 flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 mb-8">
         <div className="bg-red-50 dark:bg-red-900/10 text-red-800 dark:text-red-300 px-6 py-4 rounded-xl border border-red-200 dark:border-red-800/50 flex-1 min-w-[200px] shadow-sm print:bg-none print:bg-white print:border-slate-300 print:text-slate-900">
           <span className="block text-xs uppercase font-extrabold tracking-widest mb-1 opacity-80 print:text-slate-500">Puntaje CVSS 3.1</span>
           <div className="flex items-baseline gap-2">
@@ -313,13 +337,26 @@ const Comandos = () => (
           <span className="block text-[10px] mt-2 opacity-70 font-mono print:text-slate-500">CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</span>
         </div>
         <div className="bg-[#86BBD8]/10 dark:bg-slate-800/30 px-6 py-4 rounded-xl border border-[#33658A]/30 dark:border-slate-700 flex-[2] min-w-[300px] shadow-sm print:bg-white print:border-slate-300 hover:shadow-md transition-shadow">
-          <h4 className="text-[#33658A] dark:text-[#86BBD8] font-bold mb-2 flex items-center gap-2 print:text-slate-800"><ShieldCheck size={18}/> Medidas Preventivas</h4>
+          <h4 className="text-[#33658A] dark:text-[#86BBD8] font-bold mb-2 flex items-center gap-2 print:text-slate-800"><ShieldCheck size={18}/> Medidas Preventivas (Defensa)</h4>
           <ul className="list-disc pl-5 space-y-1 text-sm text-slate-700 dark:text-slate-300 print:text-slate-800">
-            <li><strong>No llamar al Shell:</strong> Usar APIs nativas de programación en vez de `os.system()` o `exec()`.</li>
-            <li><strong>Sandboxing:</strong> Aislar la app en Contenedores (Docker) con mínimos privilegios.</li>
-            <li><strong>Validación estricta (White-list):</strong> Obligar formato exacto de IPs, rechazando cualquier otro carácter.</li>
+            <li><strong>No invocar el Shell:</strong> Evitar `os.system()` o `exec()`. Usar APIs nativas del lenguaje de programación.</li>
+            <li><strong>Validación Allow-list:</strong> Obligar formato exacto de entradas (Regex estricto para IPs).</li>
+            <li><strong>Sandboxing:</strong> Contenerizar la app (Docker) aislando la ejecución del sistema operativo Host.</li>
+            <li><strong>Mínimo Privilegio OS:</strong> Correr el proceso web con usuario restringido (no root).</li>
           </ul>
         </div>
+      </div>
+
+      {/* Referencias Académicas */}
+      <div className="bg-slate-50 dark:bg-slate-800/30 p-5 rounded-xl border border-slate-200 dark:border-slate-700 print:bg-white print:border-slate-300">
+        <h4 className="text-sm font-bold flex items-center gap-2 text-slate-800 dark:text-slate-200 mb-2 print:text-black">
+          <BookOpen size={16} className="text-[#33658A] dark:text-[#86BBD8]" /> Fuentes y Referencias Académicas
+        </h4>
+        <ul className="text-xs text-slate-600 dark:text-slate-400 space-y-2 print:text-slate-800">
+          <li><strong>OWASP:</strong> Métodos de prevención extraídos del <em>OS Command Injection Defense Cheat Sheet</em>, destacando la prohibición de APIs de shell.</li>
+          <li><strong>NIST & FIRST:</strong> Puntaje Crítico 9.8 (CWE-78). Vector que resulta en compromiso catastrófico sin privilegios (`PR:N`) ni interacción (`UI:N`).</li>
+          <li><strong>MITRE ATT&CK:</strong> Utilizado para modelar las Técnicas (TTPs) descritas en la sección de daño estructural (Movimiento lateral / Pivoteo).</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -445,8 +482,9 @@ const Matriz = () => {
     if (score >= 20) return 'bg-red-600 dark:bg-red-700';
     if (score >= 15) return 'bg-orange-500 dark:bg-orange-600';
     if (score >= 10) return 'bg-amber-400 dark:bg-amber-500';
-    if (score >= 5) return 'bg-[#86BBD8] dark:bg-[#33658A]';
-    return 'bg-[#E0EEF5] dark:bg-slate-800/50';
+    // Modificado para usar verde esmeralda y destacar del fondo celeste
+    if (score >= 5) return 'bg-emerald-400 dark:bg-emerald-600';
+    return 'bg-emerald-200 dark:bg-emerald-800/50';
   };
 
   const grid = [];
@@ -611,7 +649,7 @@ const Controles = () => (
 
     <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-[#33658A]/30 dark:border-slate-800 mb-6 print:shadow-none print:border-slate-300 print:bg-white hover:shadow-md transition-shadow">
       <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed print:text-slate-800">
-        Para asegurar la continuidad operativa y la protección de los ahorros de AFP Horizonte, la estrategia de seguridad no debe depender de una sola barrera. Se implementa un modelo de <strong>Defensa en Profundidad</strong> distribuido en tres capas fundamentales.
+        Para asegurar la continuity operativa y la protección de los ahorros de AFP Horizonte, la estrategia de seguridad no debe depender de una sola barrera. Se implementa un modelo de <strong>Defensa en Profundidad</strong> distribuido en tres capas fundamentales.
       </p>
     </div>
 
@@ -816,8 +854,6 @@ const Prompts = () => (
 );
 
 
-// --- APLICACIÓN PRINCIPAL ---
-
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState('resumen');
@@ -945,7 +981,7 @@ export default function App() {
               {darkMode ? <Sun size={18} className="text-amber-500" /> : <Moon size={18} className="text-[#33658A]" />}
             </button>
 
-            <a href="https://github.com/mandresgarridoc-arch" target="_blank" rel="noreferrer" title="Mi github" className="flex-1 flex justify-center items-center p-2.5 bg-white dark:bg-slate-800 border border-[#33658A]/30 dark:border-slate-700 shadow-sm hover:shadow hover:bg-[#86BBD8]/20 text-[#33658A] dark:text-slate-300 rounded-xl dark:hover:text-[#86BBD8] transition-all duration-300">
+            <a href="https://github.com/mandresgarridoc-arch" target="_blank" rel="noreferrer" title="Mi perfil Github" className="flex-1 flex justify-center items-center p-2.5 bg-white dark:bg-slate-800 border border-[#33658A]/30 dark:border-slate-700 shadow-sm hover:shadow hover:bg-[#86BBD8]/20 text-[#33658A] dark:text-slate-300 rounded-xl dark:hover:text-[#86BBD8] transition-all duration-300">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
                 <path d="M9 18c-4.51 2-5-2-7-2"/>
@@ -971,7 +1007,7 @@ export default function App() {
                 Mauricio Garrido
               </span>
               <span className="text-[10px] text-slate-600 dark:text-slate-500 flex items-center gap-1 mt-1">
-                <QrCode size={10} /> Escanea para ver en celular
+                <QrCode size={10} /> Escanea la App
               </span>
             </div>
             <div className="shrink-0 p-1.5 bg-white dark:bg-slate-100 rounded-lg shadow-sm border border-[#33658A]/30 hover:scale-105 transition-transform duration-300">
